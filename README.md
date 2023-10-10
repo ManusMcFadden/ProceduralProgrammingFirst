@@ -1,4 +1,2 @@
-### ProceduralProgrammingFirst
+### ProceduralProgramming
 Code for procedural programming
-
-cat
