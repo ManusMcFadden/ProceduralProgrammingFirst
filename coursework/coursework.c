@@ -10,9 +10,11 @@ typedef struct {
 } FITNESS_DATA;
 
 // Define any additional variables here
-
-
-
+char record[21];
+char date[11];
+char time[6];
+char steps[10];
+int stepsint;
 // This is your helper function. Do not change it in any way.
 // Inputs: character array representing a row; the delimiter character
 // Ouputs: date character array; time character array; steps character array
@@ -44,5 +46,6 @@ void tokeniseRecord(const char *input, const char *delimiter,
 // Complete the main function
 int main() {
 
+tokeniseRecord(record, ",", date, time, steps);
 
 }
