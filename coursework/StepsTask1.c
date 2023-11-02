@@ -53,16 +53,17 @@ FILE *open_file(char filename[], char mode[]) {
 // Complete the main function
 int main() {
     FITNESS_DATA fitness_data;
+    typedef array [60];
     char filename [] = "FitnessData_2023.csv";
     FILE *file = open_file(filename, "r");
 
     int buffer_size = 100;
     char line_buffer[buffer_size];
     while (fgets(line_buffer, buffer_size, file) != NULL) {
-        tokeniseRecord(line_buffer, ",", fitness_data.date, fitness_data.time, fitness_data.steps);
+        array[count] = tokeniseRecord(line_buffer, ",", fitness_data.date, fitness_data.time, fitness_data.steps);
         count += 1;
     }
-    
+    printf(count);
     fclose(file);
     return 0;
 
