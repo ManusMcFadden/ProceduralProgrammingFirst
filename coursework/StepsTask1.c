@@ -53,18 +53,35 @@ FILE *open_file(char filename[], char mode[]) {
 // Complete the main function
 int main() {
     FITNESS_DATA fitness_data;
-    typedef array [60];
     char filename [] = "FitnessData_2023.csv";
     FILE *file = open_file(filename, "r");
 
     int buffer_size = 100;
     char line_buffer[buffer_size];
     while (fgets(line_buffer, buffer_size, file) != NULL) {
-        array[count] = tokeniseRecord(line_buffer, ",", fitness_data.date, fitness_data.time, fitness_data.steps);
         count += 1;
     }
-    printf(count);
     fclose(file);
+
+    FITNESS_DATA array[count];
+    FILE *new_file = open_file(filename, "r");
+    char date[11];
+	char time[6];
+	char steps[10];
+    int index = 0;
+    while (fgets(line_buffer, buffer_size, file) != NULL) {
+        tokeniseRecord(line_buffer, ",", fitness_data.date, fitness_data.time, fitness_data.steps);
+        strcpy(array[index].date, date);
+        strcpy(array[index].time, time);
+        array[index].steps = atoi(steps);
+        index += 1;
+    }
+    fclose(file);
+    int i = 0;
+    for (i=0; i<3; i++){
+        printf("%s/%s/%d\n",array[i].date, array[i].time, array[i].steps);
+    }
+        printf("Number of records in file: %d\n", count);
     return 0;
 
 }
