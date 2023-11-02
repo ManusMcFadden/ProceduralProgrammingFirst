@@ -10,7 +10,7 @@ typedef struct {
 } FITNESS_DATA;
 
 // Define any additional variables here
-int count = 0;
+
 
 
 // This is your helper function. Do not change it in any way.
@@ -52,6 +52,7 @@ FILE *open_file(char filename[], char mode[]) {
 
 // Complete the main function
 int main() {
+    int count = 0;
     FITNESS_DATA fitness_data;
     char filename [] = "FitnessData_2023.csv";
     FILE *file = open_file(filename, "r");
@@ -61,25 +62,24 @@ int main() {
     while (fgets(line_buffer, buffer_size, file) != NULL) {
         count += 1;
     }
-    fclose(file);
 
-    FITNESS_DATA array[count];
-    FILE *new_file = open_file(filename, "r");
+
+    FITNESS_DATA data_array[count];
     char date[11];
 	char time[6];
 	char steps[10];
     int index = 0;
     while (fgets(line_buffer, buffer_size, file) != NULL) {
-        tokeniseRecord(line_buffer, ",", fitness_data.date, fitness_data.time, fitness_data.steps);
-        strcpy(array[index].date, date);
-        strcpy(array[index].time, time);
-        array[index].steps = atoi(steps);
+        tokeniseRecord(line_buffer, ",", date, time, steps);
+        strcpy(data_array[index].date, date);
+        strcpy(data_array[index].time, time);
+        data_array[index].steps = atoi(steps);
         index += 1;
     }
     fclose(file);
     int i = 0;
     for (i=0; i<3; i++){
-        printf("%s/%s/%d\n",array[i].date, array[i].time, array[i].steps);
+        printf("%s/%s/%d\n",data_array[i].date, data_array[i].time, data_array[i].steps);
     }
         printf("Number of records in file: %d\n", count);
     return 0;
