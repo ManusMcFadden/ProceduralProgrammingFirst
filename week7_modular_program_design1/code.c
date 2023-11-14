@@ -4,6 +4,7 @@ int main()
 {
     // array of daily readings
     reading daily_readings[100];
+    month get_month[100];
 
     char line[buffer_size];
     char filename[buffer_size];
@@ -86,15 +87,15 @@ int main()
 
         case 'C':
         case 'c':
-        counter = 0;
-        int lowest = 20;
-
-            while (fgets(line, buffer_size, input))
-            {
-                // split up the line and store it in the right place
-                // using the & operator to pass in a pointer to the bloodIron so it stores it
-                tokeniseRecord(line, ",", daily_readings[counter].date, &daily_readings[counter].bloodIron);
-                counter++;
+            counter = 0;
+            float lowest = 20;
+                while (fgets(line, buffer_size, input))
+                {
+                    // split up the line and store it in the right place
+                    // using the & operator to pass in a pointer to the bloodIron so it stores it
+                    tokeniseRecord(line, ",", daily_readings[counter].date, &daily_readings[counter].bloodIron);
+                    counter++;
+                }
                 lowest = daily_readings[0].bloodIron;
                 for (int i = 1; i < counter; i++)
                 {
@@ -102,19 +103,53 @@ int main()
                     {
                         lowest = daily_readings[i].bloodIron;
                     }
-
                 }
-                printf("%s\n",lowest);
-            break;
+                printf("%.1f\n",lowest); 
+                break;
 
         case 'D':
         case 'd':
-            return 0;
+            counter = 0;
+            float highest = 0;
+                while (fgets(line, buffer_size, input))
+                {
+                    // split up the line and store it in the right place
+                    // using the & operator to pass in a pointer to the bloodIron so it stores it
+                    tokeniseRecord(line, ",", daily_readings[counter].date, &daily_readings[counter].bloodIron);
+                    counter++;
+                }
+                highest = daily_readings[0].bloodIron;
+                for (int i = 1; i < counter; i++)
+                {
+                    if (daily_readings[i].bloodIron > daily_readings[i-1].bloodIron)
+                    {
+                        highest = daily_readings[i].bloodIron;
+                    }
+                }
+                printf("%.1f\n",highest); 
             break;
 
         case 'E':
         case 'e':
-            return 0;
+            char user_month[4];
+            printf("enter month: ");
+            gets(user_month);
+            counter = 0;
+                while (fgets(line, buffer_size, input))
+                {
+                    // split up the line and store it in the right place
+                    // using the & operator to pass in a pointer to the bloodIron so it stores it
+                    tokeniseRecord(line, ",", daily_readings[counter].date, &daily_readings[counter].bloodIron);
+                    counter++;
+                }
+                while (fgets(line, buffer_size, input))
+                {
+                    tokeniseRecord(line, "-", get_month[counter].day, &get_month[counter].month), &get_month[counter].year;
+                }
+                for (int i = 0; i < counter; i++)
+                {
+                    if get_month[i].month = user_month
+                }
             break;
 
         case 'F':
@@ -138,5 +173,4 @@ int main()
             break;
         }
     }
-}
 }

@@ -17,6 +17,12 @@ typedef struct
     float bloodIron;
 } reading;
 
+typedef struct
+{
+    char day[3];
+    char month[4];
+    char year[10];
+} month;
 /**
  * @brief Adapted version of the tokeniseRecord function which you should now be familiar with - this one is adapted for this data file
  *        as it has fewer outputs and gives you the bloodIron as a float
