@@ -123,7 +123,9 @@ int main()
                 {
                     if (daily_readings[i].bloodIron > daily_readings[i-1].bloodIron)
                     {
+                        
                         highest = daily_readings[i].bloodIron;
+                        
                     }
                 }
                 printf("%.1f\n",highest); 
